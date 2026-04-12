@@ -1,0 +1,41 @@
+{
+  "name": "leader-academy-learning-support",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "description": "Learning Support Service for Leader Academy",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "watch": "tsc --watch",
+    "db:generate": "drizzle-kit generate:mysql",
+    "db:push": "drizzle-kit push:mysql",
+    "db:studio": "drizzle-kit studio",
+    "lint": "echo 'Linting...'",
+    "test": "echo 'Testing...'"
+  },
+  "keywords": [
+    "learning-support",
+    "microservice",
+    "leader-academy"
+  ],
+  "author": "Leader Academy",
+  "license": "MIT",
+  "dependencies": {
+    "@libsql/client": "^0.17.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "axios": "^1.15.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.1",
+    "drizzle-orm": "^0.45.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "drizzle-kit": "^0.31.10"
+  }
+}
