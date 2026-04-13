@@ -31,7 +31,7 @@
     "dotenv": "^17.4.1",
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
-    "mysql2": "^3.22.0",
+    "better-sqlite3": "^11.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.2"
   },

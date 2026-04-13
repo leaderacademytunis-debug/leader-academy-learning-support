@@ -1,22 +1,23 @@
-import { drizzle } from 'drizzle-orm/mysql2';
-import mysql from 'mysql2/promise';
+import { drizzle } from 'drizzle-orm/better-sqlite3';
+import Database from 'better-sqlite3';
 import * as schema from '../../drizzle/schema';
+import path from 'path';
 
 let db: any = null;
 
 export async function initializeDatabase() {
   if (db) return db;
 
-  const connectionString = process.env.DATABASE_URL;
-  if (!connectionString) {
-    throw new Error('DATABASE_URL environment variable is not set');
+  try {
+    const dbPath = path.join(process.cwd(), 'data', 'courses.db');
+    const sqlite = new Database(dbPath);
+    db = drizzle(sqlite, { schema, mode: 'default' });
+    console.log('✅ SQLite Database connected successfully at', dbPath);
+    return db;
+  } catch (error) {
+    console.error('❌ Database initialization failed:', error);
+    throw error;
   }
-
-  const connection = await mysql.createConnection(connectionString);
-  db = drizzle(connection, { schema, mode: 'default' });
-
-  console.log('✅ Database connected successfully');
-  return db;
 }
 
 export function getDatabase() {
@@ -25,3 +26,5 @@ export function getDatabase() {
   }
   return db;
 }
+
+
